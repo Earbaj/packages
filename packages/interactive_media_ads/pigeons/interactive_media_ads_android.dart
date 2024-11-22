@@ -403,8 +403,23 @@ abstract class BaseManager {
   /// to play the ad.
   void destroy();
 
-  /// Initializes the ad experience using default rendering settings
-  void init();
+  /// Initializes the ad experience on the manager.
+  void init(AdsRenderingSettings? settings);
+
+  /// Generic focus endpoint that puts focus on the skip button if present.
+  void focus();
+
+  /// Returns the latest AdProgressInfo for the current playing ad.
+  AdProgressInfo? getAdProgressInfo();
+
+  /// Get currently playing ad.
+  Ad? getCurrentAd();
+
+  /// Removes a listener for error events.
+  void removeAdErrorListener(AdErrorListener errorListener);
+
+  /// Removes a listener for ad events.
+  void removeAdEventListener(AdEventListener adEventListener);
 }
 
 /// Event to notify publisher that an event occurred with an Ad.
@@ -454,6 +469,10 @@ abstract class ImaSdkFactory {
 
   /// Creates an AdsRequest object to contain the data used to request ads.
   AdsRequest createAdsRequest();
+
+  /// Creates an `AdsRenderingSettings` object to give the AdsManager parameters
+  /// that control the rendering of ads.
+  AdsRenderingSettings createAdsRenderingSettings();
 }
 
 /// Defines general SDK settings that are used when creating an `AdsLoader`.
